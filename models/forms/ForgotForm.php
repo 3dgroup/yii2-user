@@ -46,7 +46,7 @@ class ForgotForm extends Model
             ["email", "required"],
             ["email", "email"],
             ["email", "validateEmail"],
-            ["email", "filter", "filter" => "trim"],
+            ["email", "trim"],
         ];
     }
 
