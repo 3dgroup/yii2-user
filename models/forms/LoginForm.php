@@ -124,12 +124,21 @@ class LoginForm extends Model
             // build query based on email and/or username login properties
             $user = $this->module->model("User");
             $user = $user::find();
-            if ($this->module->loginEmail) {
-                $user->orWhere(["email" => $this->email]);
+            
+            if ($this->module->loginUsername && $this->module->loginEmail) {
+                $user->andWhere(['or',
+                    ["email" => $this->email],
+                    ["username" => $this->email]
+                ]);
+            } else {
+                if ($this->module->loginEmail) {
+                    $user->andWhere(["email" => $this->email]);
+                }
+                if ($this->module->loginUsername) {
+                    $user->andWhere(["username" => $this->email]);
+                }
             }
-            if ($this->module->loginUsername) {
-                $user->orWhere(["username" => $this->email]);
-            }
+            
             $this->user = $user->one();
         }
         return $this->user;
