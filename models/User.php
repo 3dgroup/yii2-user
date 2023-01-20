@@ -95,7 +95,7 @@ class User extends ActiveRecord implements IdentityInterface
             // general email and username rules
             [['email', 'username'], 'string', 'max' => 255],
             [['email', 'username'], 'unique'],
-            [['email', 'username'], 'filter', 'filter' => 'trim'],
+            [['email', 'username'], 'trim'],
             [['email'], 'email'],
             [['username'], 'match', 'pattern' => '/^\w+$/u', 'except' => 'social', 'message' => Yii::t('user', '{attribute} can contain only letters, numbers, and "_"')],
 
