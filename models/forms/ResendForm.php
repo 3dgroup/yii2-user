@@ -44,7 +44,7 @@ class ResendForm extends Model
             ["email", "required"],
             ["email", "email"],
             ["email", "validateEmailInactive"],
-            ["email", "filter", "filter" => "trim"],
+            ["email", "trim"],
         ];
     }
 
